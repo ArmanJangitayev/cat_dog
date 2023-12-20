@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Animals Gallery</title>
+</head>
+
+<body class="container" style="padding-top: 5%;">
+
+<!-- Cats Section -->
+<div class="row">
+    <h1>Коты</h1>
+
+    {% for cat in cats %}
+    <div class="col-md-4">
+        <div class="card">
+            <img src="{{ cat.image.image.url }}" class="card-img-top" alt="{{ cat.title }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ cat.title }}</h5>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Dogs Section -->
+<div class="row mt-4">
+    <h1>Собаки</h1>
+    {% for dog in dogs %}
+    <div class="col-md-4">
+        <div class="card">
+            <img src="{{ dog.image.image.url }}" class="card-img-top" alt="{{ dog.title }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ dog.title }}</h5>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Feedback Form Section -->
+<div class="row mt-4">
+    <h2>Feedback Form</h2>
+    <form method="post" action="{% url 'feedback' %}" class="col-md-6">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+</body>
+
+</html>
